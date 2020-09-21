@@ -9,26 +9,33 @@
     <section class="main container py-5">
         <div class="row">
             <div class="col-md-8">
-                <?php if(have_posts()) : 
-                while (have_posts()) :the_post(); ?>
+               
+                <?php if(have_posts()) : while(have_posts()) : the_post();  ?>
                     <article class="blog-post pb-5">
-                            <img class="img-fluid" src="<?php echo esc_url(get_template_directory_uri()); ?>/img/mint drustvene mreze.jpg" alt="">
-                            <div class="text">
-                                <h3>Drustvene mreze</h3>
-                                <p class="meta">07.09.2020. | Admin</p>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem iure facilis aliquam magnam voluptatibus doloribus quam earum vitae expedita alias soluta inventore iusto labore, aspernatur quos aperiam similique velit
-                                    repellat voluptatem magni corrupti praesentium incidunt aut nisi! Corrupti libero, error hic ea provident veritatis nobis voluptates esse aliquam atque repellat natus est voluptatibus tenetur officia.</p>
-                                <a href="" class="btn">Procitaj vise</a>
-                            </div>
-                        </article>
-               <?php endwhile; else :  ?>
-                <?php _e('Nema napisnih postova'); ?>
-            <?php endif;?>
+                        <div class="featured-image">
+                            <?php the_post_thumbnail(); ?>
+                        </div>
+                        <div class="text">
+                            <h3><?php the_title(); ?></h3>
+                            <p class="meta">
+                                <?php echo get_the_date('F j, Y'); ?> | <?php the_author(); ?>
+                            </p>
+                            <?php the_excerpt(); ?>
+                            <a href="<?php the_permalink(); ?>" class="btn">
+                               <?php _e('Procitaj ceo tekst'); ?>
+                            </a>
+                        </div>
+                    </article>
+                <?php endwhile; else : ?>
+                    <?php _e('Nema napisanih postova'); ?>
+                <?php endif; ?>
+                
+                
             </div>
             <div class="col-md-4">
-               <?php get_sidebar(); ?>
+                <?php get_sidebar(); ?>
             </div>
         </div>
     </section>
-
+    
 <?php get_footer(); ?>

@@ -195,6 +195,11 @@ blog
     list-style: none;
 }
 
+.featured-image img {
+    width: 100%;
+    height: auto;
+}
+
 
 /**************************
 kontakt
